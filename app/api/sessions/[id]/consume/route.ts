@@ -18,14 +18,7 @@ export async function POST(
       sessionId: id as Id<"sessions">,
     });
 
-    // Get the session to know the substanceId for modifiers
-    const session = await convex.query(api.sessions.getSession, {
-      sessionId: id as Id<"sessions">,
-    });
-
-    const modifiers = session
-      ? getModifiers(session.substanceId, result.doseNumber)
-      : null;
+    const modifiers = getModifiers(result.substanceId, result.doseNumber);
 
     return NextResponse.json({
       doseNumber: result.doseNumber,

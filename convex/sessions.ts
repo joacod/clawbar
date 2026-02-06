@@ -104,6 +104,7 @@ export const consume = mutation({
       doseNumber: newDoseCount,
       currentLevel,
       maxReached,
+      substanceId: session.substanceId,
     };
   },
 });
