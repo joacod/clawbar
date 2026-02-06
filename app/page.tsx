@@ -7,6 +7,13 @@ const substances = Object.values(SUBSTANCES);
 export default function Home() {
   return (
     <div className="grain relative min-h-screen">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-surface focus:px-4 focus:py-2 focus:text-neon-amber"
+      >
+        Skip to content
+      </a>
+
       {/* Hero */}
       <header className="relative overflow-hidden border-b border-surface-border">
         {/* Ambient glow */}
@@ -19,7 +26,7 @@ export default function Home() {
           {/* Emoji row */}
           <div className="animate-fade-up mb-6 flex items-center justify-center gap-4 text-3xl">
             {substances.map((s) => (
-              <span key={s.id} title={s.name}>
+              <span key={s.id} role="img" aria-label={s.name} title={s.name}>
                 {s.emoji}
               </span>
             ))}
@@ -59,7 +66,7 @@ export default function Home() {
       </header>
 
       {/* Substances */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
+      <section id="main" className="mx-auto max-w-5xl px-6 py-16">
         <h2 className="mb-8 text-xs font-medium tracking-[0.25em] uppercase text-muted">
           Substances
         </h2>

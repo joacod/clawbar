@@ -15,6 +15,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
@@ -101,6 +105,15 @@ body {
 
 .animate-fade-up {
   animation: fadeUp 0.6s ease-out both;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .neon-flicker,
+  .animate-fade-up,
+  .animate-pulse {
+    animation: none !important;
+  }
 }
 
 /* Scrollbar styling */
