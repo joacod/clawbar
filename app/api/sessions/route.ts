@@ -3,14 +3,22 @@ import { extractAuth } from "@/lib/auth";
 import { getConvexClient } from "@/lib/convex";
 import { SUBSTANCES } from "@/lib/substances";
 import { getCurrentLevel } from "@/lib/intoxication";
+import { parseBody } from "@/lib/sanitize";
 import { api } from "@/convex/_generated/api";
 
 export async function POST(request: NextRequest) {
   try {
     const auth = await extractAuth(request);
 
-    const body = await request.json().catch(() => null);
-    if (!body?.substanceId || typeof body.substanceId !== "string") {
+    const body = await parseBody<{ substanceId?: string }>(request);
+    if (!body) {
+      return NextResponse.json(
+        { error: "Invalid or oversized request body (max 1KB)" },
+        { status: 400 },
+      );
+    }
+
+    if (!body.substanceId || typeof body.substanceId !== "string") {
       return NextResponse.json(
         { error: "substanceId is required" },
         { status: 400 },

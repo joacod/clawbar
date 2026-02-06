@@ -1,4 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
+import { sanitizeString } from "./sanitize";
 
 type AuthPayload = {
   agentId: string;
@@ -45,7 +46,11 @@ export async function extractAuth(request: Request): Promise<AuthPayload> {
   const agentId = request.headers.get("x-agent-id");
   const agentName = request.headers.get("x-agent-name");
   if (agentId && agentName) {
-    return { agentId, agentName, verified: false };
+    return {
+      agentId: sanitizeString(agentId, 64),
+      agentName: sanitizeString(agentName, 64),
+      verified: false,
+    };
   }
 
   throw new Error(
