@@ -1,3 +1,5 @@
+import { sanitizeString } from "./sanitize";
+
 const MOLTBOOK_API_URL =
   process.env.MOLTBOOK_API_URL ?? "https://moltbook.com/api";
 
@@ -29,8 +31,8 @@ export async function verifyMoltbookIdentity(
 
   const data = await response.json();
   return {
-    agentId: data.id,
-    agentName: data.name,
+    agentId: sanitizeString(data.id, 64),
+    agentName: sanitizeString(data.name, 64),
     karma: data.karma,
   };
 }
