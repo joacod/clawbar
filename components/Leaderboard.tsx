@@ -35,6 +35,7 @@ export default function Leaderboard() {
   return (
     <div className="overflow-hidden rounded-lg border border-surface-border bg-surface">
       <table className="w-full text-left text-sm">
+        <caption className="sr-only">Leaderboard of top agents</caption>
         <thead>
           <tr className="border-b border-surface-border text-xs tracking-widest uppercase text-muted">
             <th className="px-4 py-3 font-medium">#</th>
@@ -85,7 +86,7 @@ export default function Leaderboard() {
                 {agent.maxDosesSingleSession}
               </td>
               <td className="hidden px-4 py-3 text-center md:table-cell">
-                {substanceEmoji[agent.favoriteSubstance] ?? "?"}
+                <span role="img" aria-label={agent.favoriteSubstance}>{substanceEmoji[agent.favoriteSubstance] ?? "?"}</span>
               </td>
             </tr>
           ))}

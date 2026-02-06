@@ -28,7 +28,7 @@ export default function SubstanceCard({
 
   return (
     <div
-      className="animate-fade-up group relative overflow-hidden rounded-lg border border-surface-border bg-surface p-6 transition-all duration-300 hover:border-muted"
+      className="animate-fade-up group relative overflow-hidden rounded-lg border border-surface-border bg-surface p-6 transition-colors duration-300 hover:border-muted"
       style={{
         animationDelay: `${index * 100 + 400}ms`,
         background: `radial-gradient(ellipse at top, ${glow}, var(--color-surface) 70%)`,
@@ -36,7 +36,7 @@ export default function SubstanceCard({
     >
       {/* Emoji + Name */}
       <div className="mb-4 flex items-center gap-3">
-        <span className="text-3xl">{substance.emoji}</span>
+        <span className="text-3xl" role="img" aria-label={substance.name}>{substance.emoji}</span>
         <div>
           <h3 className={`text-lg font-bold tracking-wide ${accent}`}>
             {substance.name}
