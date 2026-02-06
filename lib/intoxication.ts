@@ -9,13 +9,7 @@ export function getCurrentLevel(
     throw new Error(`Unknown substance: ${substanceId}`);
   }
 
-  let matched = substance.levels[0];
-  for (const level of substance.levels) {
-    if (doseCount >= level.minDoses) {
-      matched = level;
-    }
-  }
-  return matched;
+  return substance.levels.findLast(l => doseCount >= l.minDoses) ?? substance.levels[0];
 }
 
 export function getModifiers(

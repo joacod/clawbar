@@ -1,5 +1,3 @@
-"use client";
-
 import { Substance } from "@/lib/substances";
 
 const glowColors: Record<string, string> = {
