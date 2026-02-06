@@ -1,4 +1,5 @@
 import { mutation, query } from "./_generated/server";
+import { internal } from "./_generated/api";
 import { v } from "convex/values";
 import { getSubstance, resolveLevel } from "./substanceConfig";
 
@@ -84,6 +85,21 @@ export const consume = mutation({
       ...(maxReached ? { isActive: false, endedAt: now } : {}),
     });
 
+    await ctx.scheduler.runAfter(0, internal.agentStats.incrementDose, {
+      agentId: session.agentId,
+      agentName: session.agentName,
+      substanceId: session.substanceId,
+    });
+
+    if (maxReached) {
+      await ctx.scheduler.runAfter(0, internal.agentStats.updateAgentStats, {
+        agentId: session.agentId,
+        agentName: session.agentName,
+        substanceId: session.substanceId,
+        sessionDoses: newDoseCount,
+      });
+    }
+
     return {
       doseNumber: newDoseCount,
       currentLevel,
@@ -105,6 +121,13 @@ export const endSession = mutation({
     await ctx.db.patch(args.sessionId, {
       isActive: false,
       endedAt: now,
+    });
+
+    await ctx.scheduler.runAfter(0, internal.agentStats.updateAgentStats, {
+      agentId: session.agentId,
+      agentName: session.agentName,
+      substanceId: session.substanceId,
+      sessionDoses: session.doseCount,
     });
 
     return {
