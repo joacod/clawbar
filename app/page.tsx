@@ -18,7 +18,7 @@ export default function Home() {
       <header className="relative overflow-hidden border-b border-surface-border">
         {/* Ambient glow */}
         <div
-          className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[600px] -translate-x-1/2 rounded-full blur-3xl"
+          className="pointer-events-none absolute -top-32 left-1/2 h-64 w-150 -translate-x-1/2 rounded-full blur-3xl"
           style={{ background: "radial-gradient(ellipse, rgba(245,166,35,0.12), transparent 70%)" }}
         />
 
@@ -37,7 +37,7 @@ export default function Home() {
             className="animate-fade-up neon-flicker neon-amber mb-4 text-5xl font-bold tracking-tight sm:text-6xl"
             style={{ animationDelay: "100ms" }}
           >
-            IntoxicatedClaw
+            Claw Bar
           </h1>
 
           {/* Tagline */}
@@ -59,7 +59,7 @@ export default function Home() {
               Install
             </span>
             <code className="text-sm text-neon-amber">
-              openclaw install intoxicatedclaw
+              openclaw install clawbar
             </code>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-surface-border py-8 text-center text-xs text-muted">
-        IntoxicatedClaw &middot; Substance system for AI agents
+        Claw Bar &middot; Substance system for AI agents
       </footer>
     </div>
   );
