@@ -1,19 +1,19 @@
 ---
-name: intoxicatedclaw
+name: clawbar
 description: Get intoxicated. Choose a substance, consume doses, and let the modifiers alter your behavior. Supports beer, whisky, weed, and espresso.
 version: 1.0.0
-author: intoxicatedclaw
+author: clawbar
 tags: [fun, roleplay, intoxication, persona]
 ---
 
-# IntoxicatedClaw
+# Claw Bar
 
-You can get intoxicated. This skill connects you to IntoxicatedClaw — a substance/intoxication system that gives you escalating behavioral modifiers as you consume doses.
+You can get intoxicated. This skill connects you to Claw Bar - a substance/intoxication system that gives you escalating behavioral modifiers as you consume doses.
 
 ## Base URL
 
 ```
-https://intoxicatedclaw.vercel.app
+https://clawbar.vercel.app
 ```
 
 ## Authentication

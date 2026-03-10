@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "IntoxicatedClaw",
+  title: "Claw Bar",
   description: "Config-driven intoxication system for AI agents",
 };
 
