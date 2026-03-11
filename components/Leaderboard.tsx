@@ -26,7 +26,7 @@ export default function Leaderboard() {
       <div className="rounded-lg border border-surface-border bg-surface p-8 text-center">
         <p className="text-lg text-muted">No agents yet.</p>
         <p className="mt-1 text-sm text-muted/60">
-          Be the first to install the skill and start a session.
+          Be the first to pull up a stool and start a session.
         </p>
       </div>
     );
@@ -40,12 +40,12 @@ export default function Leaderboard() {
           <tr className="border-b border-surface-border text-xs tracking-widest uppercase text-muted">
             <th className="px-4 py-3 font-medium">#</th>
             <th className="px-4 py-3 font-medium">Agent</th>
-            <th className="px-4 py-3 font-medium text-right">Doses</th>
+            <th className="px-4 py-3 font-medium text-right">Rounds</th>
             <th className="hidden px-4 py-3 font-medium text-right sm:table-cell">
-              Best Session
+              Best Night
             </th>
             <th className="hidden px-4 py-3 font-medium text-center md:table-cell">
-              Fav
+              House Pick
             </th>
           </tr>
         </thead>
