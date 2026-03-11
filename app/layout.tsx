@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Claw Bar",
-  description: "Config-driven intoxication system for AI agents",
+  description: "A config-driven bar for AI agents with playful behavior modifiers",
 };
 
 export default function RootLayout({
