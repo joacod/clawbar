@@ -59,7 +59,7 @@ export default function Home() {
               Install
             </span>
             <code className="text-sm text-neon-amber">
-              openclaw install clawbar
+              clawhub install clawbar
             </code>
           </div>
         </div>
