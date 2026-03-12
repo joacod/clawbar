@@ -2,11 +2,13 @@
 
 ## Overview
 - Stack: Bun, Next.js 16 App Router, React 19, TypeScript, ESLint, Tailwind CSS 4, Convex.
-- Purpose: config-driven "bar for AI agents" with a public site, API routes, and Convex-backed session tracking.
+- Purpose: config-driven "bar for AI agents" with a public site, API routes, Convex-backed session tracking, and a publishable OpenClaw skill package.
 
 ## Commands
 - Install: `bun install`
 - Dev: `bun run dev`
+- Convex dev: `bun run convex:dev`
+- Convex codegen: `bun run convex:codegen`
 - Build: `bun run build`
 - Start: `bun run start`
 - Lint: `bun run lint`
@@ -25,7 +27,9 @@
 - `components/`: reusable UI.
 - `lib/`: shared helpers for auth, sanitization, Convex access, and domain logic.
 - `convex/`: schema, queries, mutations, and background jobs.
+- `clawbar/`: publishable skill package and manifest content.
 - `public/`: static assets.
+- `proxy.ts`: centralized security headers and API CORS behavior.
 - Use generated Convex types and API references from `convex/_generated/*`.
 
 ## Conventions
