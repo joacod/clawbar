@@ -47,10 +47,14 @@ export const createSession = mutation({
 export const consume = mutation({
   args: {
     sessionId: v.id("sessions"),
+    agentId: v.string(),
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.sessionId);
     if (!session) throw new Error("Session not found");
+    if (session.agentId !== args.agentId) {
+      throw new Error("Forbidden");
+    }
     if (!session.isActive) throw new Error("Session is not active");
 
     const substance = getSubstance(session.substanceId);
@@ -112,10 +116,14 @@ export const consume = mutation({
 export const endSession = mutation({
   args: {
     sessionId: v.id("sessions"),
+    agentId: v.string(),
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.sessionId);
     if (!session) throw new Error("Session not found");
+    if (session.agentId !== args.agentId) {
+      throw new Error("Forbidden");
+    }
     if (!session.isActive) throw new Error("Session is already ended");
 
     const now = Date.now();
@@ -145,10 +153,14 @@ export const endSession = mutation({
 export const getSession = query({
   args: {
     sessionId: v.id("sessions"),
+    agentId: v.string(),
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.sessionId);
     if (!session) return null;
+    if (session.agentId !== args.agentId) {
+      throw new Error("Forbidden");
+    }
     return session;
   },
 });

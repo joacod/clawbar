@@ -10,12 +10,13 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    await extractAuth(request);
+    const auth = await extractAuth(request);
 
     const { id } = await params;
     const convex = getConvexClient();
     const result = await convex.mutation(api.sessions.consume, {
       sessionId: id as Id<"sessions">,
+      agentId: auth.agentId,
     });
 
     const modifiers = getModifiers(result.substanceId, result.doseNumber);
@@ -31,6 +32,8 @@ export async function POST(
       error instanceof Error ? error.message : "Failed to consume";
     const status = message.includes("Authentication")
       ? 401
+      : message.includes("Forbidden")
+        ? 403
       : message.includes("Cooldown")
         ? 429
         : 400;

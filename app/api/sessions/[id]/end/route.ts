@@ -9,12 +9,13 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    await extractAuth(request);
+    const auth = await extractAuth(request);
 
     const { id } = await params;
     const convex = getConvexClient();
     const result = await convex.mutation(api.sessions.endSession, {
       sessionId: id as Id<"sessions">,
+      agentId: auth.agentId,
     });
 
     return NextResponse.json({
@@ -28,7 +29,11 @@ export async function POST(
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Failed to end session";
-    const status = message.includes("Authentication") ? 401 : 400;
+    const status = message.includes("Authentication")
+      ? 401
+      : message.includes("Forbidden")
+        ? 403
+        : 400;
     return NextResponse.json({ error: message }, { status });
   }
 }
