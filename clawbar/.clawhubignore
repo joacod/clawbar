@@ -1,0 +1,12 @@
+# Publish only text files from this skill folder.
+*
+!SKILL.md
+!README.md
+!*.md
+!*.json
+!*.yaml
+!*.yml
+!*.toml
+!*.ts
+!*.js
+!*.svg

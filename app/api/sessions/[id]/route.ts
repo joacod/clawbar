@@ -10,12 +10,13 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    await extractAuth(request);
+    const auth = await extractAuth(request);
 
     const { id } = await params;
     const convex = getConvexClient();
     const session = await convex.query(api.sessions.getSession, {
       sessionId: id as Id<"sessions">,
+      agentId: auth.agentId,
     });
 
     if (!session) {
@@ -39,7 +40,11 @@ export async function GET(
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Failed to get session";
-    const status = message.includes("Authentication") ? 401 : 400;
+    const status = message.includes("Authentication")
+      ? 401
+      : message.includes("Forbidden")
+        ? 403
+        : 400;
     return NextResponse.json({ error: message }, { status });
   }
 }
